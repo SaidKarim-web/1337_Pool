@@ -6,12 +6,18 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:48:43 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/23 20:23:07 by skarim           ###   ########.fr       */
+/*   Updated: 2023/08/24 19:34:35 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
 #include <stdio.h>*/
-#include <ctype.h>
+
+int	ft_isspace(char c)
+{
+	return (c == ' ' || c == '\t'
+		|| c == '\n' || c == '\r'
+		|| c == '\f' || c == '\v');
+}
 
 int	ft_atoi(char *str)
 {
@@ -22,7 +28,7 @@ int	ft_atoi(char *str)
 	check = 0;
 	sign = 1;
 	r = 0;
-	while (isspace(*str))
+	while (ft_isspace(*str))
 		str++;
 	while (*str == '-' || *str == '+')
 	{

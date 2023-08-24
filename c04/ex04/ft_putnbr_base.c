@@ -6,7 +6,7 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:57:20 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/24 10:31:15 by skarim           ###   ########.fr       */
+/*   Updated: 2023/08/24 20:18:28 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,20 @@ void	ft_display(int nbr, char *base)
 	long	j;
 
 	size = 0;
+	j = nbr;
 	while (base[size])
 		size++;
 	if (nbr < 0)
 	{
 		ft_putchar('-');
-		j = nbr;
-		j = -j;
-		ft_display(j / size, base);
-		ft_putchar(base[j % size]);
+		j *= -1;
 	}
-	else if (nbr < size)
-		ft_putchar(base[nbr]);
+	if (j < size)
+		ft_putchar(base[j]);
 	else
 	{
-		ft_display(nbr / size, base);
-		ft_putchar(base[nbr % size]);
+		ft_display(j / size, base);
+		ft_display(j % size, base);
 	}
 }
 

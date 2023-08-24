@@ -6,48 +6,9 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:14 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/24 17:22:09 by skarim           ###   ########.fr       */
+/*   Updated: 2023/08/24 19:38:13 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <ctype.h>
-//#include <stdio.h>
-
-int	ft_atoi(char *str)
-{
-	int	sign;
-	int	res;
-	int	i;
-
-	res = 0;
-	sign = 1;
-	i = 0;
-	while (isspace(*str))
-		str++;
-	while (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -sign;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		res = res * 10 + *str - '0';
-		i = 1;
-		str++;
-	}
-	if (!i)
-		return (0);
-	return (res * sign);
-}
-/* 
-int	main(int argc, char *argv[])
-{
-	if (argc > 1)
-		printf("%d", ft_atoi(argv[1]));
-	return (0);
-}
-*/
 
 int	ft_valide_base(char *s)
 {
