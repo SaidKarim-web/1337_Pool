@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:42:18 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/23 19:36:36 by skarim           ###   ########.fr       */
+/*   Created: 2023/08/23 12:59:26 by skarim            #+#    #+#             */
+/*   Updated: 2023/08/23 13:08:29 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char	*str, char *to_find)
-{
-	char	*str_tmp;
-	char	*find_tmp;
+#include <unistd.h>
 
-	if (*to_find == '\0')
-		return (str);
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
 	while (*str)
 	{
-		str_tmp = str;
-		find_tmp = to_find;
-		while (*str_tmp && *find_tmp && *str_tmp == *find_tmp)
-		{
-			str_tmp++;
-			find_tmp++;
-		}
-		if (*find_tmp == '\0')
-			return (str);
+		i++;
 		str++;
 	}
-	return (0);
+	return (i);
 }
+
+void	ft_putstr(char *str)
+{
+	write(1, str, ft_strlen(str));
+}
+/*
+int main(void)
+{
+	char *s = "work smart and hard!";
+	ft_putstr(s);
+	return (0);
+}*/

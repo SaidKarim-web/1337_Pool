@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:42:18 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/23 19:36:36 by skarim           ###   ########.fr       */
+/*   Created: 2023/08/23 13:09:35 by skarim            #+#    #+#             */
+/*   Updated: 2023/08/23 13:29:44 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char	*str, char *to_find)
-{
-	char	*str_tmp;
-	char	*find_tmp;
+#include <unistd.h>
 
-	if (*to_find == '\0')
-		return (str);
-	while (*str)
-	{
-		str_tmp = str;
-		find_tmp = to_find;
-		while (*str_tmp && *find_tmp && *str_tmp == *find_tmp)
-		{
-			str_tmp++;
-			find_tmp++;
-		}
-		if (*find_tmp == '\0')
-			return (str);
-		str++;
-	}
-	return (0);
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
 }
+
+void	ft_putnbr(int nb)
+{
+	long	n;
+
+	n = nb;
+	if (n >= 0 && n < 10)
+		ft_putchar(n + '0');
+	else if (n >= 10)
+	{
+		ft_putnbr(n / 10);
+		ft_putchar(n % 10 + '0');
+	}
+	else
+	{
+		ft_putchar('-');
+		ft_putnbr(-n / 10);
+		ft_putchar(-n % 10 + '0');
+	}
+}
+/*
+int	main(void)
+{
+	ft_putnbr(2147483647);
+	return (0);
+}*/

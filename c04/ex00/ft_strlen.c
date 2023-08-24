@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:42:18 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/23 19:36:36 by skarim           ###   ########.fr       */
+/*   Created: 2023/08/23 12:46:18 by skarim            #+#    #+#             */
+/*   Updated: 2023/08/23 12:58:14 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+#include <stdio.h>*/
 
-char	*ft_strstr(char	*str, char *to_find)
+int	ft_strlen(char *str)
 {
-	char	*str_tmp;
-	char	*find_tmp;
+	int	size;
 
-	if (*to_find == '\0')
-		return (str);
+	size = 0;
 	while (*str)
 	{
-		str_tmp = str;
-		find_tmp = to_find;
-		while (*str_tmp && *find_tmp && *str_tmp == *find_tmp)
-		{
-			str_tmp++;
-			find_tmp++;
-		}
-		if (*find_tmp == '\0')
-			return (str);
 		str++;
+		size++;
 	}
-	return (0);
+	return (size);
 }
+/*
+int	main(void)
+{
+	char *s = "Cowards die many times before their deaths!";
+
+	printf("the size of %s: %d", s, ft_strlen(s));
+	return (0);
+}*/

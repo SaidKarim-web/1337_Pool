@@ -6,7 +6,7 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 06:12:10 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/23 10:37:08 by skarim           ###   ########.fr       */
+/*   Updated: 2023/08/23 11:58:03 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -42,7 +42,7 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	if (size <= i)
 		return (j + size);
 	k = i;
-	while (*src && size > k)
+	while (*src && k < size - 1)
 	{
 		dest[k] = *src;
 		k++;
