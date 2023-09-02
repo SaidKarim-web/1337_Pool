@@ -6,12 +6,11 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 21:42:28 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/30 15:42:29 by skarim           ###   ########.fr       */
+/*   Updated: 2023/09/02 16:14:51 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-//#include <stdio.h>
 
 int		ft_strlen(char *s);
 int		ft_isvalide(char c, char *base);
@@ -57,7 +56,7 @@ int	ft_numbersize(int n, int div)
 		i++;
 		n /= div;
 	}
-	return (i + 1);
+	return (i);
 }
 
 char	*ft_itoi_base(int nbr, char *base)
@@ -77,6 +76,7 @@ char	*ft_itoi_base(int nbr, char *base)
 	{
 		res[0] = '-';
 		n = -n;
+		size++;
 		i++;
 	}
 	res[size] = '\0';
@@ -94,15 +94,9 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		return (NULL);
 	return (ft_itoi_base(ft_atoi_base(nbr, base_from), base_to));
 }
-/*
-int	main(void)
+#include <stdio.h>
+int main (int ac, char **av)
 {
-	char	*nbr = "-3e";
-	char	*base_from = "0123456789abcdef";
-	char	*base_to = "0123456789";
-	int	 n = 255;
-	printf("%s\n", ft_convert_base(nbr, base_from, base_to));
-//	printf("%s", ft_itoi_base(n, base_from));
-//	printf("%d", ft_strlen(ft_itoi_base(n, base_to)));
-	return (0); 
-}*/
+	(void)ac;
+	printf("%s", ft_convert_base(av[1], av[2], av[3]));
+}
