@@ -6,12 +6,11 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:08:04 by skarim            #+#    #+#             */
-/*   Updated: 2023/09/01 11:48:39 by skarim           ###   ########.fr       */
+/*   Updated: 2023/09/02 17:15:41 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-//#include <stdio.h>
 
 int	ft_issep(char c, char *charset)
 {
@@ -45,34 +44,21 @@ int	ft_countwords(char *str, char *charset)
 	return (nbr);
 }
 
-char	*ft_strcpy(char *dest, char *src, int end, int start)
-{
-	int		i;
-
-	i = 0;
-	while (start + i < end)
-	{
-		dest[i] = src[start + i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
 char	*ft_strdup(char *str, int start, int end)
 {
 	char	*res;
 	int		i;
 
 	i = 0;
-	if (end > start + 1)
+	if (end > start)
 	{
-		res = (char *)malloc(sizeof(char) * (end - i + 1));
+		res = (char *)malloc(sizeof(char) * (end - start + 1));
 		if (res == NULL)
 			return (NULL);
-		while (start + i < end)
+		while (start < end)
 		{
-			res[i] = str[start + i];
+			res[i] = str[start];
+			start++;
 			i++;
 		}
 		res[i] = '\0';
@@ -110,13 +96,12 @@ char	**ft_split(char *str, char *charset)
 	return (res);
 }
 /*
-int	main(void)
+#include <stdio.h>
+int	main(int ac, char **av)
 {
-	char	*str = "said, karim 1337,pooler  ";
-	char	*charset = ", ";
-	char	**tab;
+	char **tab;
 
-	tab = ft_split(str, charset);
+	tab = ft_split(av[1], av[2]);
 	while (*tab != 0)
 	{
 		printf("%s", *tab);
