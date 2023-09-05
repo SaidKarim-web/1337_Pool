@@ -1,17 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 09:57:20 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/24 20:18:28 by skarim           ###   ########.fr       */
+/*   Created: 2023/09/04 19:32:41 by skarim            #+#    #+#             */
+/*   Updated: 2023/09/05 09:20:58 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-#include <stdio.h>*/
 
 #include <unistd.h>
 
@@ -20,67 +17,87 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	ft_str_valide(char *str)
+int	ft_strlen(char *s)
 {
-	int	size;
 	int	i;
 
-	if (!str || !*str)
-		return (0);
-	size = 0;
-	while (str[size])
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	ft_isvalide(char *base)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (base[i])
 	{
-		i = size + 1;
-		while (str[i])
+		j = i + 1;
+		while (base[j])
 		{
-			if (str[i] == str[size])
+			if (base[i] == base[j])
 				return (0);
-			i++;
+			j++;
 		}
-		if (str[size] == '-' || str[size] == '+')
+		if (base[i] == '-' || base[i] == '+')
 			return (0);
-		size++;
+		i++;
 	}
-	if (size < 2)
+	if (i <= 1)
 		return (0);
 	return (1);
 }
 
-void	ft_display(int nbr, char *base)
+void	ft_putstr(char *str)
 {
-	int		size;
-	long	j;
+	int	i;
+	int	size;
 
-	size = 0;
-	j = nbr;
-	while (base[size])
-		size++;
-	if (nbr < 0)
+	size = ft_strlen(str);
+	i = 0;
+	if (*str == '-')
 	{
 		ft_putchar('-');
-		j *= -1;
+		i = 1;
 	}
-	if (j < size)
-		ft_putchar(base[j]);
-	else
-	{
-		ft_display(j / size, base);
-		ft_display(j % size, base);
-	}
+	while (--size >= i)
+		ft_putchar(str[size]);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+void	ft_putnbr_base(int n, char *base)
 {
-	if (!ft_str_valide(base))
+	char	res[100];
+	int		i;
+	int		size;
+	long	nbr;
+
+	if (!ft_isvalide(base))
 		return ;
-	ft_display(nbr, base);
+	size = ft_strlen(base);
+	i = 0;
+	nbr = n;
+	if (nbr == 0)
+		res[i++] = base[0];
+	if (nbr < 0)
+	{
+		res[0] = '-';
+		i++;
+		nbr *= -1;
+	}
+	while (nbr)
+	{
+		res[i++] = base[nbr % size];
+		nbr /= size;
+	}
+	res[i] = '\0';
+	ft_putstr(res);
 }
 /*
 int	main(void)
 {
-	printf("123 in base 2: ");
-	ft_putnbr_base(123, "01");
-	printf("\n12 in base 16: ");
-	ft_putnbr_base(12, "0123456789abcdef");
+	ft_putnbr_base(-35, "0123456789abcdef");
 	return (0);
 }*/

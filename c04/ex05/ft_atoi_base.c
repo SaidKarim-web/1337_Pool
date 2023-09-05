@@ -6,9 +6,16 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:14 by skarim            #+#    #+#             */
-/*   Updated: 2023/08/24 19:38:13 by skarim           ###   ########.fr       */
+/*   Updated: 2023/09/05 16:09:36 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	ft_space(char c)
+{
+	return (c == ' ' || c == '\t'
+		|| c == '\n' || c == '\n'
+		|| c == '\f' || c == '\v');
+}
 
 int	ft_valide_base(char *s)
 {
@@ -23,13 +30,10 @@ int	ft_valide_base(char *s)
 		{
 			if (s[i] == s[size])
 				return (0);
-			if (s[size] == '-' || s[size] == '+' 
-				|| s[size] == '\t' || s[size] == '\n' 
-				|| s[size] == '\r' || s[size] == ' ' 
-				|| s[size] == '\v' || s[size] == '\f')
-				return (0);
 			i++;
 		}
+		if (s[size] == '-' || s[size] == '+' || ft_space(s[size]))
+			return (0);
 		size++;
 	}
 	if (size <= 1)
@@ -54,47 +58,35 @@ int	ft_decimal(char *str, char *base)
 			i++;
 		if (base[i])
 			res = res * size + i;
+		else
+			return (res);
 		str++;
 	}
 	return (res);
-}
-
-int	ft_space(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n' 
-		|| c == '\r' || c == '\v' || c == '\f');
 }
 
 int	ft_atoi_base(char *str, char *base)
 {
 	int	sign;
 
+	if (!ft_valide_base(base))
+		return (0);
 	sign = 1;
 	while (ft_space(*str))
 		str++;
 	while (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-			sign = -1;
+			sign = -sign;
 		str++;
 	}
-	if (ft_valide_base(base))
-		return (sign * ft_decimal(str, base));
+	return (sign * ft_decimal(str, base));
 	return (0);
 }
+/*
 
-/*int main(void)
+int	main(int ac, char **av)
 {
-	int i;
-	char *base = "0123456789abcdef";
-  char *test_cases[10] = {"123", "1010", "7B", "456", "XYZ", "  -42", 
-  "+123", "  9", "A A"};
-	i = 0;
-	while (test_cases[i])
-	{
-		printf("example: %d ==> %s > %d\n", i, test_cases[i],
-	   	ft_atoi_base(test_cases[i], base));
-		i++;
-	}
+	printf("%d", ft_atoi_base(av[1], av[2]));
 	return (0);
 }*/
