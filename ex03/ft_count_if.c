@@ -1,51 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_sort.c                                       :+:      :+:    :+:   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 09:28:17 by skarim            #+#    #+#             */
-/*   Updated: 2023/09/06 10:12:32 by skarim           ###   ########.fr       */
+/*   Created: 2023/09/05 23:50:07 by skarim            #+#    #+#             */
+/*   Updated: 2023/09/07 09:13:02 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-int	ft_intcmp(int a, int b)
-{
-	return (a - b);
-}
-*/
-int	ft_is_sort(int	*tab, int length, int (*f)(int, int))
+int	ft_search(char *str)
 {
 	int	i;
-	int	sorted;
-
-	sorted = 1;
+	
 	i = 0;
-	while (i < length - 1 && sorted)
+	while (str[i])
 	{
-		if (ft_intcmp(tab[i], tab[i + 1]) > 0)
-			sorted = 0;
+		if (str[i] == 'A')
+			return (1);
 		i++;
 	}
-	if (!sorted)
+	return (0);
+}*/
+int	ft_count_if(char **tab, int length, int (*f)(char*))
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (i < length)
 	{
-		sorted = 1;
-		while (length > 0)
-		{
-			if (ft_intcmp(tab[length], tab[length - 1]) > 0)
-				return (0);
-			length--;
-		}
+		if (f(tab[i]))
+			count++;
+		i++;
 	}
-	return (1);
+	return (count);
 }
 /*
 #include <stdio.h>
 int	main(void)
 {
-	int tab[] = {9, 3, 1, -2};
-	printf("%d", ft_is_sort(tab, 4, &ft_intcmp));
+	char	*tab[] = {"sesg", "slelA", "esAel"};
+
+	printf("%d", ft_count_if(tab, 3, &ft_search));
 	return (0);
 }*/
