@@ -6,11 +6,11 @@
 /*   By: skarim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:41:03 by skarim            #+#    #+#             */
-/*   Updated: 2023/09/07 09:44:23 by skarim           ###   ########.fr       */
+/*   Updated: 2023/09/07 12:31:44 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "do-op.h"
+#include "do_op.h"
 #include <unistd.h>
 
 int	operator(int a, char *c, int b)
